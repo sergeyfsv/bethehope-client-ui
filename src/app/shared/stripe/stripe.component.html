@@ -1,0 +1,61 @@
+<div>
+
+
+  <div class="amount-line-one" style="margin-left: 10%; margin-bottom: 8px;">Payment Method</div>
+
+  <div class="col-12 align-items-center">
+
+    <button *ngIf="(everythingLoaded && showPaymentRequest)" class="pay-button" (click)="openPaymentBox()">
+      <span style="margin-right: 10px;">Donate with</span>
+      <span class="pay-icon" *ngIf="(everythingLoaded && !showAppleIcon)"
+        [inlineSVG]="'/assets/images/google-pay.svg'"></span>
+      <span class="pay-icon" *ngIf="(everythingLoaded && showAppleIcon)"
+        [inlineSVG]="'/assets/images/apple-pay.svg'"></span>
+      <!-- <span style="margin-left: 10px;">Pay</span> -->
+    </button>
+
+    <div [style.display]="(showPaymentRequest && everythingLoaded) ? 'block' : 'none'" #payElement
+      class="pay-request-button">
+      <!--Stripe paymentRequestButton Element inserted here-->
+
+    </div>
+
+    <div [style.display]="(showPaymentRequest && everythingLoaded) ? 'block' : 'none'" (click)="toggleCreditCardBox()">
+      <div class="enter-card-details separator">Or enter card details <span *ngIf="!showCreditCardBoxBool"
+          class="tiny-arrow">▼</span>
+        <span *ngIf="showCreditCardBoxBool" class="tiny-arrow">▲</span>
+      </div>
+    </div>
+
+
+    <div [style.display]="(everythingLoaded && (!showPaymentRequest || showCreditCardBoxBool)) ? 'block' : 'none'">
+      <div class="form__group field">
+        <input type="input" class="form__field" placeholder="email" name="email" id='email' required
+          [(ngModel)]="email" />
+        <label for="email" class="form__label">Email</label>
+      </div>
+
+      <div class="cell example example4" id="example-4">
+        <form (ngSubmit)="getSource()">
+          <fieldset>
+
+            <legend>Donate
+              with card</legend>
+
+            <div class="container">
+              <div #cardElement id="example4-card"></div>
+              <button type="submit">Donate with Card</button>
+
+            </div>
+
+          </fieldset>
+          <div class="stripe-error">{{cardErrors}}</div>
+        </form>
+
+      </div>
+    </div>
+  </div>
+
+
+</div>
+<ngx-spinner></ngx-spinner>

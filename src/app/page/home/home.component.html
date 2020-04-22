@@ -1,0 +1,78 @@
+<div class="container-sm main-container">
+    <div class="home-container">
+        <div class="top">
+            <div class="top-container">
+                <!-- <img [src]="logoSrc" class="logo" /> -->
+                <div class="camp-text">{{QRName}}</div>
+                <div class="by-text">by <b>{{QrgName}}</b></div>
+                <div class="qr-info-links">
+                    <span class="cookie" *ngIf="QRDescription && QRDescription != ''"
+                        (click)="openDescription()">Description</span>
+
+                    <span *ngIf="QRDescription && QRDescription != '' && QRPoster && QRPoster != ''"
+                        style="width:25px; display: inline-block;"></span>
+
+                    <span class="cookie" *ngIf="QRPoster && QRPoster != ''" (click)="openPoster()">Poster</span>
+
+                </div>
+            </div>
+
+
+        </div>
+
+        <div class="middle">
+            <div class="middle-left">
+                <div class="middle-main">
+                    <div class="amount-line-one">Donation amount</div>
+                    <div class="amount-line-two">Remember, every penny counts!</div>
+                    <div class="container">
+                        <div class="row">
+                            <div class="col no-pad" (click)="updateAmount(10, false)">
+                                <div class="tile" [ngClass]="{'selected': amount == 10 && customAmount == false}">
+                                    <div class="dollar selected" *ngIf="amount == 10 && !customAmount"
+                                        [inlineSVG]="'/assets/images/tick.svg'"></div>
+                                    <span class="dollar" *ngIf="amount != 10 || customAmount">$</span>
+                                    <div class="dollar-value" [ngClass]="{'selected': amount == 10}"><span
+                                            class="denomination">CAD</span>10</div>
+                                </div>
+
+                            </div>
+                            <div class="col no-pad" (click)="updateAmount(20, false)">
+                                <div class="tile" [ngClass]="{'selected': amount == 20 && customAmount == false}">
+                                    <div class="dollar selected" *ngIf="amount == 20 && !customAmount"
+                                        [inlineSVG]="'/assets/images/tick.svg'"></div>
+                                    <span class="dollar" *ngIf="amount != 20 || customAmount">$</span>
+                                    <div class="dollar-value" [ngClass]="{'selected': amount == 20}"><span
+                                            class="denomination">CAD</span>20</div>
+                                </div>
+                            </div>
+                            <div class="col no-pad" (click)="updateToCustom()">
+
+                                <div class="tile" [ngClass]="{'selected':customAmount}">
+                                    <div class="other-value">ANY VALUE</div>
+                                    <div class="dollar selected" *ngIf="customAmount"
+                                        [inlineSVG]="'/assets/images/tick.svg'"></div>
+                                    <span class="dollar" *ngIf="!customAmount">$</span>
+                                    <div class="dollar-value" [ngClass]="{'selected': customAmount}"
+                                        style="left: 12px;">
+                                        <span #customVal class="denomination">CAD</span>
+                                        <input type="number" class="custom-value" [ngClass]="{'selected': customAmount}"
+                                            placeholder="50" (change)="updateCustomAmount($event)" /></div>
+                                </div>
+                            </div>
+                        </div>
+                    </div>
+                </div>
+            </div>
+            <div class="middle-right"></div>
+
+        </div>
+
+        <div class="bottom">
+            <div class="bottom-main">
+                <app-stripe [amount]="amount"></app-stripe>
+            </div>
+        </div>
+
+    </div>
+</div>

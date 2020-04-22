@@ -1,0 +1,81 @@
+/* TODO: write CSS for smaller screens */
+.main-container {
+	max-width: 600px;
+	/* border: 1px #efeeee solid; */
+	height: 100%;
+	padding: 0;
+  }
+
+  
+.form__group {
+	position: relative;
+	padding: 0 15px;
+	margin: auto;
+	width: 100%;
+	max-width: 496px !important;
+	margin-bottom: 20px;
+}
+
+.form__field {
+	font-family: inherit;
+	width: 100%;
+	border: 0;
+	border-bottom: 1px solid #9b9b9b3b;
+	outline: 0;
+	font-size: 14px;
+	color: #323546;
+	padding: 12px 0 1px 0;
+	background: transparent;
+	transition: border-color 0.2s;
+}
+.form__field::placeholder {
+	color: transparent;
+}
+.form__field:placeholder-shown ~ .form__label {
+	font-size: 14px;
+	cursor: text;
+	top: 11px;
+}
+
+.form__label {
+	position: absolute;
+	top: -8px;
+	display: block;
+	transition: 0.2s;
+	font-size: 12px;
+	color: #9b9b9b;
+}
+
+.form__field:focus {
+	padding: 12px 0 1px 0;
+}
+.form__field:focus ~ .form__label {
+	position: absolute;
+	top: -8px;
+	display: block;
+	transition: 0.2s;
+	font-size: 12px;
+	color: #b1a5a4;
+	font-weight: 700;
+}
+
+/* reset input */
+.form__field:required,
+.form__field:invalid {
+	box-shadow: none;
+}
+
+.amount-line-one {
+	font-size: 18px;
+	font-family: "Avenir-Medium";
+}
+
+.amount-line-two {
+	font-size: 14px;
+	margin-bottom: 6%;
+	color: #ababab;
+}
+
+button:focus {
+	outline: none;
+}

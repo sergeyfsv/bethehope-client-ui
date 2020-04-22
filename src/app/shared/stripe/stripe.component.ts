@@ -48,7 +48,6 @@ export class StripeComponent implements AfterViewInit, OnInit {
 
   ngOnInit(): void {
     this.shorthand = this.route.snapshot.paramMap.get("shorthand");
-    console.log("shorthand", this.shorthand);
   }
 
   ngAfterViewInit(): void {
@@ -203,7 +202,7 @@ export class StripeComponent implements AfterViewInit, OnInit {
     this.paymentRequest.show();
   }
 
-  async getSource() {
+  async getSource() { 
     if (this.amount < 1) {
       return swal.fire({
         title: "Sorry!",
@@ -293,12 +292,14 @@ export class StripeComponent implements AfterViewInit, OnInit {
 
   ngOnChanges(changes: SimpleChanges) {
     if (changes) {
-      this.paymentRequest.update({
-        total: {
-          amount: parseInt(changes.amount.currentValue) * 100, // convert dollars to cents,
-          label: "Donation"
-        }
-      });
+      if (this.paymentRequest){
+        this.paymentRequest.update({
+          total: {
+            amount: parseInt(changes.amount.currentValue) * 100, // convert dollars to cents,
+            label: "Donation"
+          }
+        });
+      }
     }
   }
 }

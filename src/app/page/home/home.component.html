@@ -57,7 +57,8 @@
                                         style="left: 12px;">
                                         <span #customVal class="denomination">CAD</span>
                                         <input type="number" class="custom-value" [ngClass]="{'selected': customAmount}"
-                                            placeholder="50" (change)="updateCustomAmount($event)" /></div>
+                                            placeholder="50" [value]="customAmountVal" (change)="updateCustomAmount($event)" />
+                                    </div>
                                 </div>
                             </div>
                         </div>

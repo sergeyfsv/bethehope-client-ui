@@ -1,4 +1,4 @@
-@media only screen and (min-width: 1025px) {
+/* @media only screen and (min-width: 1025px) {
 	html {
 		max-width: 440px !important;
 		width: 100% !important;
@@ -6,19 +6,21 @@
 		margin-top: 4%;
 		max-height: 84% !important;
 		height: 100% !important;
-		background: #f1f0f0;
+		
 		box-shadow: 4px 3px 20px 6px #cac4c4ab;
 	}
 	body {
 		border-radius: 500px;
+		max-width: 440px !important;
+		width: 100% !important;
 	}
-} 
+}  */
 
+/* background: linear-gradient(#f1f0f0 50%, #ffe2c4 50%) no-repeat; */
 .top {
-	background: #2b2c4e;
-	width: 100%;
-	height: 140px;
-	border-radius: 0 0 0px 40px;
+	background: #f1f0f0;
+    width: 100%;
+    height: 140px;
 }
 
 /* The newly created pseudo element */
@@ -35,8 +37,10 @@
 
 .top-container {
 	height: 100%;
-	width: 100%;
-	text-align: center;
+    width: 100%;
+    text-align: center;
+    background: #2b2c4e;
+    border-radius: 0 0 0px 40px;
 }
 
 .middle {
@@ -91,10 +95,13 @@
 }
 
 .camp-text {
-	padding-top: 30px;
-	color: white;
-	font-size: 22px;
-	font-family: "Avenir-Medium";
+    color: white;
+    font-size: 22px;
+    font-family: "Avenir-Medium";
+    text-overflow: ellipsis;
+    white-space: nowrap;
+    overflow: hidden;
+    padding: 30px 20px 0px 20px;
 }
 
 .by-text {
@@ -145,6 +152,7 @@
 	/* margin: 10px 15px 30px 15px; */
 	background: #ffffff;
 	max-width: 300px;
+	cursor: pointer;
 }
 
 .tile.selected {
@@ -249,5 +257,6 @@ input.custom-value::placeholder {
 .cookie {
 	padding: 8px 16px;
     background: #1c1c317d;
-    border-radius: 30px;
+	border-radius: 30px;
+	cursor: pointer;
 }

@@ -1,9 +1,10 @@
 import { Component, AfterViewInit, ViewChild, OnInit } from '@angular/core';
 import { UserService } from 'src/app/core/service/user.service';
-import * as _ from 'lodash';
+import { get } from 'lodash';
 import { PaymentService } from 'src/app/core/service/payment.service';
 import { ActivatedRoute } from '@angular/router';
 import swal from 'sweetalert2';
+import { NgxSpinnerService } from 'ngx-spinner';
 
 @Component({
   selector: 'app-home',
@@ -13,6 +14,7 @@ import swal from 'sweetalert2';
 export class HomeComponent implements OnInit {
   orgData = [];
   amount = 20; // Total amount
+  customAmountVal;
   email: String;
   shorthand = this.route.snapshot.paramMap.get('shorthand');
   QRName: String = '';
@@ -23,19 +25,22 @@ export class HomeComponent implements OnInit {
 
   constructor(
     private UserService: UserService,
-    private route: ActivatedRoute
+    private route: ActivatedRoute,
+    private spinner: NgxSpinnerService
   ) { }
 
   async ngOnInit(): Promise<any> {
     try {
+      this.spinner.show();
       const qrResp = await this.UserService.getQRCodeByShorthand(
         this.shorthand.toLowerCase()
       ).toPromise();
-      const qr = _.get(qrResp, 'qr');
-      this.QRName = _.get(qr, 'name');
-      this.QrgName = _.get(qr, 'organization.name');
-      this.QRDescription = _.get(qr, 'description');
-      this.QRPoster = _.get(qr, 'poster');
+      const qr = get(qrResp, 'qr');
+      this.QRName = get(qr, 'name');
+      this.QrgName = get(qr, 'organization.name');
+      this.QRDescription = get(qr, 'description');
+      this.QRPoster = get(qr, 'poster');
+      this.spinner.hide();
     } catch (error) { }
   }
 
@@ -51,11 +56,15 @@ export class HomeComponent implements OnInit {
 
   updateToCustom() {
     this.customAmount = true;
+    this.customAmountVal = 50;
+    this.amount = 50;
+    console.log(this.amount);
   }
 
   openDescription() {
     return swal.fire({
       padding: '45px 10px 30px 10px',
+      title: this.QRName,
       text: this.QRDescription,
       showCloseButton: true,
       showConfirmButton: false

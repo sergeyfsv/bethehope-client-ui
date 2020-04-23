@@ -41,7 +41,14 @@ export class HomeComponent implements OnInit {
       this.QRDescription = get(qr, 'description');
       this.QRPoster = get(qr, 'poster');
       this.spinner.hide();
-    } catch (error) { }
+    } catch (error) {
+      this.spinner.hide();
+      return swal.fire({
+        icon: 'error',
+        title: 'Oops...',
+        text: 'URL is not tied to any active campaign.'
+      })
+     }
   }
 
   updateAmount(val, custom) {
